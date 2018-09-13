@@ -53,6 +53,9 @@ func NewClient(connection Connection) *Client {
 		MaxLineBufferSize: 64 * 1024 * 1024,
 	}
 	client.client.Timeout = 0
+	if client.Connection.Domain == "" {
+		client.Connection.Domain = "socialgist.com"
+	}
 	return &client
 }
 
