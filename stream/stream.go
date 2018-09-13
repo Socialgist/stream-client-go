@@ -1,3 +1,4 @@
+// Package stream provides access to stream client.
 package stream
 
 import (
@@ -10,7 +11,7 @@ import (
 
 const reconnectDelay = 60 * time.Second
 
-// Connection SocialGist Stream Client configuration.
+// Connection is used to configure stream client connection configuration.
 type Connection struct {
 	Domain       string
 	Username     string
@@ -20,18 +21,18 @@ type Connection struct {
 	CustomerName string
 }
 
-// Client SocialGist Stream Client.
+// Client is a stream client that is able to consume single stream API endpoint with auto-reconnect built in.
 type Client struct {
 	Connection Connection
 	// Channel for receiving messages.
-	// Start must be called first.
+	// Start() must be called first.
 	ChanMessage chan string
 	// Channel for receiving stop signal.
-	// It will emit after Stop is called.
+	// It will emit after Stop() is called.
 	ChanStop chan bool
 	// Channel for receiving errors.
 	// It will emit when ever error occurred.
-	// These errors are not fatal becaue client will automatically reconnect.
+	// These errors are not fatal becaue client will automatically reconnect but channel still has to be consumed.
 	ChanError chan error
 	// Maximum buffer size per message. Default is 67108864 (64MB).
 	// If message is bigger then MaxLineBufferSize you'll see `bufio.Scanner: token too long` error.
@@ -90,7 +91,7 @@ func (sc *Client) Start() bool {
 	return false
 }
 
-// Stop ends previously started consumption, returns false if it's already started.
+// Stop ends previously started consumption, returns false if it's already stopped.
 func (sc *Client) Stop() bool {
 	sc.mutexRun.Lock()
 	defer sc.mutexRun.Unlock()
