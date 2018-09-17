@@ -13,12 +13,13 @@ const reconnectDelay = 60 * time.Second
 
 // Connection is used to configure stream client connection configuration.
 type Connection struct {
-	Domain       string
-	Username     string
-	Password     string
-	DataSource   string
-	StreamName   string
-	CustomerName string
+	Domain           string
+	Username         string
+	Password         string
+	DataSource       string
+	StreamName       string
+	SubscriptionName string
+	CustomerName     string
 }
 
 // Client is a stream client that is able to consume single stream API endpoint with auto-reconnect built in.
@@ -112,7 +113,7 @@ func (sc *Client) runStream() error {
 		sc.Connection.Domain,
 		sc.Connection.DataSource,
 		sc.Connection.StreamName,
-		sc.Connection.StreamName,
+		sc.Connection.SubscriptionName,
 	)
 	req, _ := http.NewRequest("GET", url, nil)
 	req.SetBasicAuth(sc.Connection.Username, sc.Connection.Password)

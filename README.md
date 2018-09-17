@@ -22,11 +22,12 @@ import (
 func main() {
     // create new client instance
     sc := stream.NewClient(stream.Connection{
-        Username:     "test",
-        Password:     "123",
-        DataSource:   "source1",
-        StreamName:   "stream1",
-        CustomerName: "myname",
+        Username:         "test",
+        Password:         "123",
+        DataSource:       "source1",
+        StreamName:       "stream1",
+        SubscriptionName: "sub1",
+        CustomerName:     "myname",
     })
     // start the client
     sc.Start()
