@@ -6,7 +6,7 @@ Download latest binary from release page.
 ## Use as a library
 
 ### Docs
-[https://godoc.org/github.com/Effyis/stream-client-go/stream](https://godoc.org/github.com/Effyis/stream-client-go/stream)
+[https://godoc.org/github.com/Socialgist/stream-client-go/stream](https://godoc.org/github.com/Socialgist/stream-client-go/stream)
 
 ### Example
 ```go
@@ -16,7 +16,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/Effyis/stream-client-go/stream"
+    "github.com/Socialgist/stream-client-go/stream"
 )
 
 func main() {
